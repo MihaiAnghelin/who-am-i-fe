@@ -3,11 +3,13 @@ import {useForm} from "react-hook-form";
 import H2 from "@/components/general/H2";
 import Box from "@/components/general/Box";
 import H3 from "@/components/general/H3";
-import {Button, CircularProgress} from "@mui/material";
+import {Button, CircularProgress, Skeleton} from "@mui/material";
 import {Category} from "@/types/Category";
 import Input from "@/components/general/Input";
 import {useMutation, useQuery, useQueryClient} from "react-query";
 import {createCategory, deleteCategory, getCategories} from "@/requests/admin";
+import {TransitionGroup} from "react-transition-group";
+import Collapse from '@mui/material/Collapse';
 
 type Props = {};
 
@@ -91,8 +93,21 @@ const Categories = (
                     </Box>
 
                     <div className="grid gap-x-20 gap-y-1 grid-cols-1 md:grid-cols-4">
+
+                        {isLoading &&
+                            Array(10).map((i) => (
+                                <Box className="p-8" key={i}>
+                                    <Skeleton animation="wave"/>
+                                    <Skeleton animation="wave"/>
+                                    <Skeleton animation="wave"/>
+                                    <Skeleton animation="wave"/>
+                                </Box>
+                            ))
+                        }
+
                         {categories?.map((category) => (
                             <Box className="p-8" key={category.id}>
+
                                 <H3>{category.name}</H3>
 
                                 <div className={"mt-4"}>
@@ -105,6 +120,7 @@ const Categories = (
                                 </div>
                             </Box>
                         ))}
+
                     </div>
 
                 </div>

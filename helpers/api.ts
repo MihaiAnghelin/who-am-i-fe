@@ -4,8 +4,13 @@ export class api
 {
     public static async get<T>(url: string): Promise<ApiResponse<T>>
     {
+        const token = localStorage.getItem("token");
+        
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api${url}`, {
             method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+            },
         });
 
         const apiResponse: ApiResponse<T> = await res.json();
@@ -39,10 +44,13 @@ export class api
 
     public static async put<T>(url: string, body: any): Promise<ApiResponse<T>>
     {
+        const token = localStorage.getItem("token");
+
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api${url}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
+                'Authorization': `Bearer ${token}`,
             },
             body: JSON.stringify(body),
         });

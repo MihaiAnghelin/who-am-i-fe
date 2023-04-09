@@ -36,5 +36,15 @@ export const theme = createTheme({
             },
         },
 
+        MuiAccordion: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: "#C3ACD0",
+                    //rounded corners
+                    borderRadius: "0.75rem !important",
+
+                },
+            },
+        },
     },
 });
