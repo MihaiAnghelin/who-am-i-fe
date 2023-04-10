@@ -169,7 +169,7 @@ const Characters = (
                             id="panel1a-header"
 
                         >
-                            {category.name}
+                            {category.name} - {category.characters?.length}
                         </AccordionSummary>
 
                         <AccordionDetails>
