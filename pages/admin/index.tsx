@@ -7,7 +7,7 @@ import {useAuth} from "@/hooks/useAuth";
 
 const AdminPage = () =>
 {
-    // useAuth();
+    useAuth();
 
     return (
         <div>
