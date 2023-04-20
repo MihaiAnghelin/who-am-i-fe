@@ -14,7 +14,7 @@ const Layout = (
             <div
                 className="bg-primary min-h-screen"
             >
-                <div className="p-16 grid grid-cols-1 justify-items-center">
+                <div className="p-16 w-screen grid grid-cols-1 justify-items-center">
                     <div className={"container"}>
                         {children}
                     </div>

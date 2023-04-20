@@ -7,6 +7,7 @@ import {dehydrate, Hydrate, QueryClient, QueryClientProvider} from "react-query"
 import {ThemeProvider} from "@mui/system";
 import {theme} from "@/styles/theme";
 import {StyledEngineProvider} from "@mui/material";
+import Head from "next/head";
 
 const quicksand = Quicksand({subsets: ['latin']});
 
@@ -21,6 +22,14 @@ export default function App({Component, pageProps}: AppProps)
                 <QueryClientProvider client={queryClient}>
                     <Hydrate state={dehydratedState}>
                         <main className={quicksand.className}>
+
+                            <Head>
+                                <title>Who Am I?</title>
+                                <meta name="description" content="Who Am I? by Mihai Anghelin"/>
+                                <meta name="viewport" content="width=device-width, initial-scale=1"/>
+                                <link rel="icon" href={"favicon.ico"}/>
+                            </Head>
+
                             <Layout>
                                 <Component {...pageProps} />
                             </Layout>

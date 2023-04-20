@@ -15,8 +15,8 @@ export const theme = createTheme({
                 root: {},
                 contained: {
                     // backgroundColor: "#674188",
-                    backgroundColor: "#674188",
-                    color: "#fff",
+                    // backgroundColor: "#674188",
+                    // color: "#fff",
                 },
             },
         },
