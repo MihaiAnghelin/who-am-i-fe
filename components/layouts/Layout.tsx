@@ -12,9 +12,9 @@ const Layout = (
     return (
         <>
             <div
-                className="bg-primary min-h-screen"
+                className="bg-primary min-h-screen px-2"
             >
-                <div className="p-16 w-screen grid grid-cols-1 justify-items-center">
+                <div className="pt-2 w-full grid grid-cols-1 justify-items-center md:pt-16">
                     <div className={"container"}>
                         {children}
                     </div>

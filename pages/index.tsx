@@ -4,16 +4,20 @@ import {Inter} from 'next/font/google';
 import favicon from '@/assets/favicon.ico';
 import {Button} from "@mui/material";
 import logo from "@/assets/images/logo96.png";
+import React from "react";
+import Box from "~/components/general/Box";
+import {useRouter} from "next/router";
 
 const inter = Inter({subsets: ['latin']});
 
 export default function Home()
 {
+    const router = useRouter();
+
     return (
         <>
             <main>
-
-                <div className="flex justify-center flex-col content-center items-center pt-16">
+                <Box className="p-16">
                     <Image
                         src={logo}
                         alt="Who Am I?"
@@ -25,12 +29,12 @@ export default function Home()
 
                     <Button
                         variant="contained"
-                        color="secondary"
+                        onClick={() => router.push("/user/create")}
                     >
                         Create new lobby
                     </Button>
-                </div>
 
+                </Box>
             </main>
         </>
     );
