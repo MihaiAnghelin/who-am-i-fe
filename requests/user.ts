@@ -2,6 +2,7 @@ import {api} from "~/helpers/api";
 import {NewLobby} from "~/types/NewLobby";
 import {CreatedLobby} from "~/types/CreatedLobby";
 import {Category} from "~/types/Category";
+import {JoinLobby} from "~/types/JoinLobby";
 
 export async function createLobby(lobby: NewLobby): Promise<CreatedLobby>
 {
@@ -20,3 +21,14 @@ export async function getCategories(): Promise<Category[]>
 
     return response.data;
 }
+
+export async function joinLobby(lobby: JoinLobby): Promise<CreatedLobby>
+{
+    const url = "/lobby/join";
+    
+    const response = await api.post<CreatedLobby>(url, lobby);
+    
+    return response.data;
+}
+
+// export async function getLobby(lobbyId: string): Promise<LobbyWaitRoom>

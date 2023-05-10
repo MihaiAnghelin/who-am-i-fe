@@ -41,14 +41,16 @@ const CreateUser = (
         mutate: mutateCreateLobby,
         isLoading: isLoadingCreateLobby,
     } = useMutation(createLobby, {
-        onSuccess: (data) =>
+        onSuccess: async (data) =>
         {
             console.log(data);
-            reset();
-            localStorage.setItem("lobbyId", data.LobbyId);
-            localStorage.setItem("playerId", data.PlayerId);
 
-            router.push(`/user/join/${data.LobbyId}`);
+            localStorage.setItem("lobbyId", JSON.stringify(data.lobbyId));
+            localStorage.setItem("playerId", JSON.stringify(data.playerId));
+
+            reset();
+
+            await router.push(`/lobby/${data.lobbyId}`);
         },
     });
 
@@ -72,7 +74,6 @@ const CreateUser = (
                     <Input
                         name="name"
                         control={control}
-                        defaultValue={""}
                         label="Username"
                         errors={!!errors.name}
                         errorMessage={errors.name?.message}

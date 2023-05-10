@@ -6,7 +6,7 @@ type Props = {
     className?: string;
     name: string;
     control: any;
-    defaultValue: string;
+    defaultValue?: string;
     label: string;
     errors: any;
     errorMessage: string | undefined;
@@ -18,7 +18,7 @@ const Input = (
         className,
         name,
         control,
-        defaultValue,
+        defaultValue = "",
         label,
         errors,
         errorMessage,

@@ -1,5 +1,5 @@
 export interface CreatedLobby
 {
-    LobbyId: string;
-    PlayerId: string;
+    lobbyId: string;
+    playerId: string;
 }
