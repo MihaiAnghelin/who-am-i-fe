@@ -12,11 +12,13 @@ export const theme = createTheme({
     components: {
         MuiButton: {
             styleOverrides: {
-                root: {},
+                root: {
+                    maxWidth: "500px",
+                    width: "100%",
+                },
                 contained: {
-                    // backgroundColor: "#674188",
-                    // backgroundColor: "#674188",
-                    // color: "#fff",
+                    maxWidth: "500px",
+                    width: "100%",
                 },
             },
         },
@@ -43,6 +45,14 @@ export const theme = createTheme({
                     //rounded corners
                     borderRadius: "0.75rem !important",
 
+                },
+            },
+        },
+        MuiFormControl: {
+            styleOverrides: {
+                root: {
+                    width: "100%",
+                    maxWidth: "500px",
                 },
             },
         },

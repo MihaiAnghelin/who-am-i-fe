@@ -1,21 +1,13 @@
 import React from "react";
 import Box from "~/components/general/Box";
-import {Controller, useForm} from "react-hook-form";
-import {NewUser} from "~/types/NewUser";
+import {useForm} from "react-hook-form";
 import Input from "~/components/general/Input";
-import {
-    Button,
-    Checkbox,
-    CircularProgress,
-    FormControl,
-    FormControlLabel,
-    FormGroup,
-    FormLabel,
-    InputLabel, ListItemText, MenuItem, Select,
-} from "@mui/material";
+import {Button, CircularProgress} from "@mui/material";
 import {createLobby, getCategories} from "~/requests/user";
 import {useMutation, useQuery} from "react-query";
 import {NewLobby} from "~/types/NewLobby";
+import Form from "~/components/general/Form";
+import MultipleSelect from "~/components/general/MultipleSelect";
 
 type Props = {};
 
@@ -29,7 +21,6 @@ const CreateUser = (
 
     const {
         handleSubmit,
-        reset,
         control,
         formState: {errors},
     } = useForm<NewLobby>();
@@ -38,8 +29,9 @@ const CreateUser = (
         mutate: mutateCreateLobby,
         isLoading: isLoadingCreateLobby,
     } = useMutation(createLobby, {
-        onSuccess: () =>
+        onSuccess: (data) =>
         {
+            console.log(data);
         },
     });
 
@@ -59,10 +51,7 @@ const CreateUser = (
             <Box className={"p-16"}>
                 <h1>Choose your username</h1>
 
-                <form
-                    onSubmit={handleSubmit(onSubmit)}
-                    className="grid grid-cols-1 gap-6 justify-items-center [&>*]:w-full"
-                >
+                <Form onSubmit={handleSubmit(onSubmit)}>
                     <Input
                         name="name"
                         control={control}
@@ -77,48 +66,37 @@ const CreateUser = (
                     {!isLoadingCategories && categories?.length === 0 && <p>No categories found</p>}
 
                     {(!isLoadingCategories && categories && categories.length > 0) &&
-                        <Controller
+                        <MultipleSelect
                             name={"categoriesIds"}
+                            label={"Categories"}
                             control={control}
                             defaultValue={categories?.map((category) => category.id) || []}
-                            render={({field}) =>
-                                <FormControl>
-                                    <InputLabel
-                                        id="categories-label"
-                                    >
-                                        Categories
-                                    </InputLabel>
+                            renderValue={(selected) =>
+                                <div className={"flex flex-row flex-wrap gap-x-1.5"}>
+                                    {(selected as string[]).map((id, index) =>
+                                        (<div>
+                                            {categories?.find((category) =>
+                                                category.id === id)?.name}
 
-                                    <Select
-                                        {...field}
-                                        labelId="categories-label"
-                                        multiple
-                                        label="Categories"
-                                    >
-                                        {categories?.map((category) =>
-                                            <MenuItem key={category.id} value={category.id}>
-                                                {/*<Checkbox checked={field.value.indexOf(category.id) > -1}/>*/}
-                                                <ListItemText primary={category.name}/>
-                                            </MenuItem>,
-                                        )}
-                                    </Select>
-                                </FormControl>
+                                            {index < selected.length - 1 && ", "}
+                                        </div>),
+                                    )}
+                                </div>
                             }
+                            list={categories}
                         />
                     }
-
 
                     <Button
                         variant={"contained"}
                         disabled={isLoadingCreateLobby}
                         type="submit"
-                        className={"max-w-2xl"}
                     >
                         {!isLoadingCreateLobby && "Create lobby"}
                         {isLoadingCreateLobby &&
                             <CircularProgress/>}
                     </Button>
-                </form>
+                </Form>
             </Box>
         </>
     );
