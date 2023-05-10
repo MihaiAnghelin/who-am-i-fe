@@ -8,22 +8,34 @@ import {useMutation, useQuery} from "react-query";
 import {NewLobby} from "~/types/NewLobby";
 import Form from "~/components/general/Form";
 import MultipleSelect from "~/components/general/MultipleSelect";
+import {NewLobbyForm} from "~/types/NewLobbyForm";
+import {useRouter} from "next/router";
 
 type Props = {};
 
 const CreateUser = (
     {}: Props): JSX.Element =>
 {
-    const onSubmit = (data: NewLobby) =>
+    const onSubmit = (data: NewLobbyForm) =>
     {
-        console.log(data);
+        const dataToSend: NewLobby = {
+            adminPlayer: {
+                name: data.name,
+            },
+            categoriesIds: data.categoriesIds,
+        };
+
+        mutateCreateLobby(dataToSend);
     };
 
     const {
         handleSubmit,
         control,
+        reset,
         formState: {errors},
-    } = useForm<NewLobby>();
+    } = useForm<NewLobbyForm>();
+
+    const router = useRouter();
 
     const {
         mutate: mutateCreateLobby,
@@ -32,6 +44,11 @@ const CreateUser = (
         onSuccess: (data) =>
         {
             console.log(data);
+            reset();
+            localStorage.setItem("lobbyId", data.LobbyId);
+            localStorage.setItem("playerId", data.PlayerId);
+
+            router.push(`/user/join/${data.LobbyId}`);
         },
     });
 
@@ -57,8 +74,8 @@ const CreateUser = (
                         control={control}
                         defaultValue={""}
                         label="Username"
-                        errors={!!errors.adminPlayer?.name}
-                        errorMessage={errors.adminPlayer?.name?.message}
+                        errors={!!errors.name}
+                        errorMessage={errors.name?.message}
                     />
 
                     {isLoadingCategories && <CircularProgress/>}
@@ -74,7 +91,7 @@ const CreateUser = (
                             renderValue={(selected) =>
                                 <div className={"flex flex-row flex-wrap gap-x-1.5"}>
                                     {(selected as string[]).map((id, index) =>
-                                        (<div>
+                                        (<div key={id}>
                                             {categories?.find((category) =>
                                                 category.id === id)?.name}
 

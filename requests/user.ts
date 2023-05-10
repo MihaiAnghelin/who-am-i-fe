@@ -5,7 +5,7 @@ import {Category} from "~/types/Category";
 
 export async function createLobby(lobby: NewLobby): Promise<CreatedLobby>
 {
-    const url = "/admin/characters";
+    const url = "/lobby/create";
 
     const response = await api.post<CreatedLobby>(url, lobby);
 
