@@ -11,4 +11,12 @@ export interface Player
     id: string;
     name: string;
     isAdmin: boolean;
+    character?: Character | null;
+}
+
+export interface Character
+{
+    id: string;
+    name: string;
+    categoryName?: string;
 }

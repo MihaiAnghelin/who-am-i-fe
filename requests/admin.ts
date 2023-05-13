@@ -2,8 +2,6 @@ import {ApiResponse} from "@/types/ApiReponse";
 import {api} from "@/helpers/api";
 import {Category} from "@/types/Category";
 import {Login} from "@/types/Login";
-import {scalarOptions} from "yaml";
-import Str = scalarOptions.Str;
 import {LoginResponse} from "@/types/LoginResponse";
 import {Character} from "@/types/Character";
 

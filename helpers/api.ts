@@ -2,16 +2,28 @@ import {ApiResponse} from "@/types/ApiReponse";
 
 export class api
 {
+    private static logout()
+    {
+        localStorage.removeItem("token");
+        window.location.href = "/admin/login";
+    }
+
     public static async get<T>(url: string): Promise<ApiResponse<T>>
     {
         const token = localStorage.getItem("token");
-        
+
         const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api${url}`, {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
             },
         });
+
+        if (res.status === 401 || res.status === 403)
+        {
+            this.logout();
+            throw new Error("Unauthorized");
+        }
 
         const apiResponse: ApiResponse<T> = await res.json();
 
@@ -34,6 +46,12 @@ export class api
             body: JSON.stringify(body),
         });
 
+        if (res.status === 401)
+        {
+            this.logout();
+            throw new Error("Unauthorized");
+        }
+
         const apiResponse: ApiResponse<T> = await res.json();
 
         if (res.ok)
@@ -55,6 +73,12 @@ export class api
             body: JSON.stringify(body),
         });
 
+        if (res.status === 401)
+        {
+            this.logout();
+            throw new Error("Unauthorized");
+        }
+
         const apiResponse: ApiResponse<T> = await res.json();
 
         if (res.ok)
@@ -73,6 +97,12 @@ export class api
                 'Authorization': `Bearer ${token}`,
             },
         });
+
+        if (res.status === 401)
+        {
+            this.logout();
+            throw new Error("Unauthorized");
+        }
 
         const apiResponse: ApiResponse<T> = await res.json();
 
