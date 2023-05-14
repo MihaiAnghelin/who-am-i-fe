@@ -113,6 +113,14 @@ const Lobby = (
         navigator.clipboard.writeText(shareUrl);
     };
 
+    const exitLobby = () =>
+    {
+        localStorage.removeItem("playerId");
+        localStorage.removeItem("isAdmin");
+        localStorage.removeItem("lobbyId");
+        router.push("/");
+    };
+
     return (
         <>
             <Box className={"p-16 "}>
@@ -147,7 +155,7 @@ const Lobby = (
                         onClick={getChars}
                         disabled={isLoadingGetCharacters}
                         className={"mb-2"}
-                        
+
                     >
                         {isLoadingGetCharacters &&
                             <CircularProgress/>}
@@ -158,6 +166,13 @@ const Lobby = (
                             </div>}
                     </Button>
                 }
+
+                <Button
+                    variant={"contained"}
+                    onClick={exitLobby}
+                >
+                    Exit Lobby
+                </Button>
             </Box>
 
             <div className="fixed left-2 bottom-2">
