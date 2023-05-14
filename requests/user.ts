@@ -6,6 +6,7 @@ import {JoinLobby} from "~/types/JoinLobby";
 import {LobbyWaitRoom} from "~/types/LobbyWaitRoom";
 import {CharacterLobby} from "~/types/CharacterLobby";
 import {RerollCharacterDTO} from "~/types/RerollCharacterDTO";
+import {RemovePlayerDTO} from "~/types/RemovePlayerDTO.t";
 
 export async function createLobby(lobby: NewLobby): Promise<CreatedLobby>
 {
@@ -57,6 +58,15 @@ export async function rerollCharacter(rerollCharacter: RerollCharacterDTO): Prom
     const url = `/lobby/rerollCharacter`;
 
     const response = await api.post<void>(url, rerollCharacter);
+
+    return response.data;
+}
+
+export async function removePlayer(removePlayerDTO: RemovePlayerDTO): Promise<void>
+{
+    const url = `/lobby/removePlayer`;
+
+    const response = await api.post<void>(url, removePlayerDTO);
 
     return response.data;
 }

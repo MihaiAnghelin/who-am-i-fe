@@ -23,12 +23,7 @@ export default function App({Component, pageProps}: AppProps)
                     <Hydrate state={dehydratedState}>
                         <main className={quicksand.className}>
 
-                            <Head>
-                                <title>Who Am I?</title>
-                                <meta name="description" content="Who Am I? by Mihai Anghelin"/>
-                                <meta name="viewport" content="width=device-width, initial-scale=1"/>
-                                <link rel="icon" href={"favicon.ico"}/>
-                            </Head>
+                           
 
                             <Layout>
                                 <Component {...pageProps} />

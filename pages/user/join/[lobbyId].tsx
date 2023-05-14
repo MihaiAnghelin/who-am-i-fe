@@ -53,13 +53,13 @@ const JoinLobby = (
         {
             console.log(data);
 
-            localStorage.setItem("lobbyId", JSON.stringify(data.lobbyId));
-            localStorage.setItem("playerId", JSON.stringify(data.playerId));
+            localStorage.setItem("lobbyId", data.lobbyId);
+            localStorage.setItem("playerId", data.playerId);
 
             reset();
 
             await router.push(`/lobby/${data.lobbyId}`);
-        }
+        },
     });
 
     return (
