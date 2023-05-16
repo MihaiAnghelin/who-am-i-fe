@@ -305,14 +305,25 @@ ar reduce numărul de request-uri făcute de client către server.
 ### Bibliografie
 
 [1] Tailwind Components. Tailwind CSS Cheatsheet. URL: https://tailwindcomponents.com/cheatsheet/.
+
 [2] Open Source Comunity. MomentJS. URL: https://momentjs.com/.
+
 [3] Docker. Docker Docs. URL: https://docs.docker.com/.
+
 [4] Interfrog Produktion GmbH. https://play-whoami.com/. URL: https://play-whoami.com/.
+
 [5] Microsoft. ASP.NET. URL: https://dotnet.microsoft.com/en-us/apps/aspnet.
+
 [6] Portainer. Portainer. URL: https://www.portainer.io.
+
 [7] Material UI SAS. Material Icons. URL: https://mui.com/material-ui/material-icons/.
+
 [8] Material UI SAS. Material UI. URL: https://mui.com/material-ui/.
+
 [9] Material UI SAS. React Hook Form. URL: https://www.react-hook-form.com/.
+
 [10] Meta Open Source. React. URL: https://react.dev/.
+
 [11] Tailwindlabs. Tailwind CSS. URL: https://tailwindcss.com/.
+
 [12] Vercel. Next.js. URL: https://nextjs.org/.
