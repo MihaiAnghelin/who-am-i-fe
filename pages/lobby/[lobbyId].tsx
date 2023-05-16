@@ -108,7 +108,8 @@ const Lobby = (
     const copyLink = () =>
     {
         setCopied(true);
-        const appUrl = process.env.NEXT_PUBLIC_APP_URL;
+        // const appUrl = process.env.NEXT_PUBLIC_APP_URL;
+        const appUrl = "https://who-am-i.mihaianghelin.ro";
         const shareUrl = `${appUrl}/user/join/${lobbyId}`;
         navigator.clipboard.writeText(shareUrl);
     };
